@@ -1,0 +1,23 @@
+version: '3'
+services:
+  todo-app-front:
+    container_name: todo-app-front
+    hostname: todo-app-front
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    # networks:
+      # - proxy_api_network
+    command: npm run dev
+    volumes: 
+      - .:/app
+      - /app/node_modules # <-- creates the node_modules in frontend path
+      - /app/.next # <-- creates the .next folder in frontend path
+# networks:
+#   proxy_api_network:
+#     external: true
+#     name: todo_api_network
+#     driver: bridge
+    
